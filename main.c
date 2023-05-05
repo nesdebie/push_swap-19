@@ -6,13 +6,30 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 14:23:50 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/05/05 15:23:11 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:43:28 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int  ft_check_and_create_tab_a(a, av)
+static int  ft_is_double(t_stack *a)
+{
+    t_stack *tmp1;
+    t_stack *tmp2;
+
+    tmp1 = a;
+    tmp2 = a->next;
+    while (tmp1->next)
+    {
+        if (tmp1->nb == tmp2->nb)
+            return (EXIT_FAILURE);
+        tmp1 = tmp1->next;
+        tmp2 = tmp2->next;
+    }
+    return (EXIT_SUCCESS);
+}
+
+static int  ft_check_and_create_tab_a(t_stack *a, char **av)
 {
     size_t  i;
     t_stack *node;
@@ -30,7 +47,7 @@ static int  ft_check_and_create_tab_a(a, av)
         ft_stackadd_back(a, node);
         i++;
     }
-    if (is_double(a))
+    if (ft_is_double(a))
     {
         ft_stackclear(a);
         return (EXIT_FAILURE);
@@ -61,8 +78,8 @@ static int ft_only_nb(char **av)
 
 int main(int ac, char **av)
 {
-    t_stack   *tab_a;
-    t_stack   *tab_b;
+    t_stack   **tab_a;
+    t_stack   **tab_b;
 
     tab_a = NULL;
     tab_b = NULL;
@@ -72,7 +89,9 @@ int main(int ac, char **av)
             ft_exit();
         if (ft_check_and_create_tab_a(&tab_a, av))
             ft_exit();
-        ft_sort(&tab_a, tab_b);
+        tab_a = ft_sort(tab_a, tab_b);
+        if (!tab_a)
+            ft_exit();
     }
-    exit(EXIT_SUCCESS);
+    return (EXIT_SUCCESS);
 }
