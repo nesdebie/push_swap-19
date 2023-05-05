@@ -55,6 +55,18 @@ t_stack	*ft_stacknew(void *nb)
 	return (new);
 }
 
+void	ft_stackadd_front(t_stack **lst, t_stack *new)
+{
+	t_stack	*tmp;
+
+	tmp = *lst;
+	if (lst && new)
+	{
+		new->next = tmp;
+		*lst = new;
+	}
+}
+
 void	ft_stackadd_back(t_stack **lst, t_stack *new)
 {
 	t_stack	*tmp;
