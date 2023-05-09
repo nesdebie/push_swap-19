@@ -43,7 +43,7 @@ int	ft_stacksize(t_stack *lst)
 	return (i);
 }
 
-t_stack	*ft_stacknew(void *nb)
+t_stack	*ft_stacknew(int nb)
 {
 	t_stack	*new;
 
