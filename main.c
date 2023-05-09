@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 14:23:50 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/05/05 15:43:28 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/05/09 10:27:48 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,18 +80,27 @@ int main(int ac, char **av)
 {
     t_stack   **tab_a;
     t_stack   **tab_b;
+    char      **tmp;
 
     tab_a = NULL;
     tab_b = NULL;
-    if (ac > 2)
+    if (ac >= 2)
     {
-        if (ft_only_nb(av))
-            ft_exit();
-        if (ft_check_and_create_tab_a(&tab_a, av))
-            ft_exit();
-        tab_a = ft_sort(tab_a, tab_b);
-        if (!tab_a)
-            ft_exit();
+        tmp = av;
+        if (ac == 2)
+        {
+            tmp = ft_split(av, SPACE);
+            if (!tmp)
+                ft_exit(NULL, 0);
+        }
+        if (ft_only_nb(tmp))
+            ft_exit(tmp, ac);
+        if (ft_check_and_create_tab_a(&tab_a, tmp))
+            ft_exit(tmp, ac);
+        if (ac == 2)
+            ft_free(tmp);
+        ft_sort(tab_a, tab_b);
+        ft_stackclear(tab_a);
     }
     return (EXIT_SUCCESS);
 }
