@@ -1,13 +1,13 @@
-SRC = 	main.c \
-		push.c \
-		swap.c \
-		rotate.c \
-		reverse_rotate.c \
-		ft_stacks.c \
-		ft_simple_sort.c \
-		ft_radix.c \
-		ft_check.c \
-		ft_exit.c \
+SRC = 	./src/main.c \
+		./src/push.c \
+		./src/swap.c \
+		./src/rotate.c \
+		./src/reverse_rotate.c \
+		./src/ft_stacks.c \
+		./src/ft_simple_sort.c \
+		./src/ft_radix.c \
+		./src/ft_check.c \
+		./src/ft_exit.c \
 		./libft/ft_split.c \
 		./libft/ft_putendl_fd.c \
 		./libft/ft_putstr_fd.c \
@@ -21,7 +21,7 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-HEADER = ./push_swap.h
+HEADER = ./includes/push_swap.h
 
 OBJ = $(SRC:c=o)
 
