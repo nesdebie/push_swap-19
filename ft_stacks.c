@@ -12,6 +12,20 @@
 
 #include "push_swap.h"
 
+t_stack	*ft_stacklast(t_stack *head)
+{
+	t_stack	*tmp;
+
+	tmp = head;
+	while (tmp->next)
+	{
+		tmp = tmp->next;
+		if (tmp->next == NULL)
+			return (tmp);
+	}
+	return (tmp);
+}
+
 void	ft_stackclear(t_stack **lst)
 {
 	t_stack	*tmp;
@@ -50,7 +64,8 @@ t_stack	*ft_stacknew(int nb)
 	new = (t_stack *)malloc(sizeof(t_stack));
 	if (!new)
 		return (NULL);
-	new->nb = nb;
+	new->value = nb;
+	new->idx = -1;
 	new->next = NULL;
 	return (new);
 }

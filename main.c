@@ -6,134 +6,104 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 14:23:50 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/05/09 11:05:34 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:05:28 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int  ft_is_sorted(t_stack *a)
+static t_stack	*get_next_min(t_stack **stack)
 {
-    t_stack *tmp1;
-    t_stack *tmp2;
+	t_stack	*head;
+	t_stack	*min;
+	int		has_min;
 
-    tmp1 = a;
-    tmp2 = a->next;
-    while (tmp1->next)
-    {
-        while (tmp2)
-        {
-            if (tmp1->nb > tmp2->nb)
-                return (EXIT_FAILURE);
-            tmp2 = tmp2->next;
-        }
-        tmp1 = tmp1->next;
-        tmp2 = tmp1->next;
-    }
-    return (EXIT_SUCCESS);
+	min = NULL;
+	has_min = 0;
+	head = *stack;
+	if (head)
+	{
+		while (head)
+		{
+			if ((head->idx == -1) && (!has_min || head->value < min->value))
+			{
+				min = head;
+				has_min = 1;
+			}
+			head = head->next;
+		}
+	}
+	return (min);
 }
 
-static int  ft_is_double(t_stack *a)
+void	index_stack(t_stack **stack)
 {
-    t_stack *tmp1;
-    t_stack *tmp2;
+	t_stack	*head;
+	int		index;
 
-    tmp1 = a;
-    tmp2 = a->next;
-    while (tmp1->next)
-    {
-        while (tmp2)
-        {
-            if (tmp1->nb == tmp2->nb)
-                return (EXIT_FAILURE);
-            tmp2 = tmp2->next;
-        }
-        tmp1 = tmp1->next;
-        tmp2 = tmp1->next;
-    }
-    return (EXIT_SUCCESS);
+	index = 0;
+	head = get_next_min(stack);
+	while (head)
+	{
+		head->idx = index++;
+		head = get_next_min(stack);
+	}
 }
 
-static int  ft_check_and_create_tab_a(t_stack *a, char **av)
+static void	initStack(t_stack **stack, int argc, char **argv)
 {
-    size_t  i;
-    t_stack *node;
+	t_stack	*new;
+	char	**args;
+	int		i;
 
-    i = 0;
-    while (av + i)
-    {
-        node = ft_stacknew(ft_atoi(av + i));
-        if (!node)
-        {
-            if (a)
-                ft_stackclear(a);
-            return (EXIT_FAILURE);
-        }
-        ft_stackadd_back(a, node);
-        i++;
-    }
-    if (ft_is_double(a))
-    {
-        ft_stackclear(a);
-        return (EXIT_FAILURE);
-    }
-    return (EXIT_SUCCESS);
+	i = 0;
+	if (argc == 2)
+		args = ft_split(argv[1], ' ');
+	else
+	{
+		i = 1;
+		args = argv;
+	}
+	while (args[i])
+	{
+		new = ft_stacknew(ft_atoi(args[i]));
+		ft_stackadd_back(stack, new);
+		i++;
+	}
+	index_stack(stack);
+	if (argc == 2)
+		ft_free(args);
 }
 
-static int ft_only_nb(char **av)
+static void	sort_stack(t_stack **stack_a, t_stack **stack_b)
 {
-    size_t i;
-    size_t j;
-    i = 1;
-    while (av[i])
-    {
-        j = 0;
-        while(av[i][j])
-        {
-            if ((av[i][0] == 43 || av[i][0] == 45) && j == 0)
-                j++;
-            if (!ft_isdigit(av[i][j]))
-                return (EXIT_FAILURE);
-            j++;
-        }
-        i++;
-    }
-    return (EXIT_SUCCESS);
+	if (ft_stacksize(*stack_a) <= 5)
+		simple_sort(stack_a, stack_b);
+	else
+		radix_sort(stack_a, stack_b);
 }
 
-int ft_pushswap(t_stack *tab_a)
+int	main(int argc, char **argv)
 {
-    t_stack *tab_b;
+	t_stack	**stack_a;
+	t_stack	**stack_b;
 
-    tab_b = NULL;
-    if (!ft_is_sorted(tab_a));
-        ft_sort(tab_a, tab_b);
-    ft_stackclear(tab_a);
-    return (EXIT_SUCCESS);
-}
-
-int main(int ac, char **av)
-{
-    t_stack   **tab_a;
-    char      **tmp;
-
-    tab_a = NULL;
-    if (ac > 1)
-    {
-        tmp = av + 1;
-        if (ac == 2)
-        {
-            tmp = ft_split(av + 1, SPACE);
-            if (!tmp)
-                ft_exit(NULL, 0);
-        }
-        if (ft_only_nb(tmp))
-            ft_exit(tmp, ac);
-        if (ft_check_and_create_tab_a(&tab_a, tmp))
-            ft_exit(tmp, ac);
-        if (ac == 2)
-            ft_free(tmp);
-        ft_pushswap(&tab_a);
-    }
-    return (EXIT_SUCCESS);
+	if (argc < 2)
+		return (-1);
+	ft_check_args(argc, argv);
+	stack_a = (t_stack **)malloc(sizeof(t_stack));
+	stack_b = (t_stack **)malloc(sizeof(t_stack));
+	*stack_a = NULL;
+	*stack_b = NULL;
+	initStack(stack_a, argc, argv);
+	if (is_sorted(stack_a))
+	{
+		free_stack(stack_a);
+		free_stack(stack_b);
+		return (0);
+	}
+	sort_stack(stack_a, stack_b);
+	free_stack(stack_a);
+	free_stack(stack_b);
+	return (0);
 }
