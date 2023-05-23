@@ -6,17 +6,11 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:04:20 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/05/16 15:21:59 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/05/23 09:54:46 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-void	ft_error(char *msg)
-{
-	ft_putendl_fd(msg, 1);
-	exit(0);
-}
 
 void	ft_free(char **str)
 {

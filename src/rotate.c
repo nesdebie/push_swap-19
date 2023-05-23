@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:49:37 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/05/16 15:21:59 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/05/23 10:08:05 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,12 @@ int	rr(t_stack **stack_a, t_stack **stack_b)
 	rotate(stack_a);
 	rotate(stack_b);
 	ft_putendl_fd("rr", 1);
+	return (0);
+}
+
+int	ra_sa_rra(t_stack **stack_a)
+{
+	ra(stack_a);
+	sa_rra(stack_a);
 	return (0);
 }

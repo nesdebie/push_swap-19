@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:39:56 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/05/16 15:21:59 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/05/23 10:06:04 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,7 @@ static void	sort_3(t_stack **stack_a)
 	if (is_sorted(stack_a))
 		return ;
 	if (head->idx == min && head->next->idx != next_min)
-	{
-		ra(stack_a);
-		sa(stack_a);
-		rra(stack_a);
-	}
+		ra_sa_rra(stack_a);
 	else if (head->idx == next_min)
 	{
 		if (head->next->idx == min)
@@ -57,10 +53,7 @@ static void	sort_3(t_stack **stack_a)
 		if (head->next->idx == min)
 			ra(stack_a);
 		else
-		{
-			sa(stack_a);
-			rra(stack_a);
-		}
+			sa_rra(stack_a);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:46:42 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/05/16 15:21:59 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/05/23 10:04:14 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,12 @@ int	ss(t_stack **stack_a, t_stack **stack_b)
 	swap(stack_a);
 	swap(stack_b);
 	ft_putendl_fd("ss", 1);
+	return (0);
+}
+
+int	sa_rra(t_stack **stack_a)
+{
+	sa(stack_a);
+	rra(stack_a);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 14:23:50 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/05/16 15:21:59 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/05/23 09:59:45 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	index_stack(t_stack **stack)
 	}
 }
 
-static void	initStack(t_stack **stack, int argc, char **argv)
+static void	init_stack(t_stack **stack, int argc, char **argv)
 {
 	t_stack	*new;
 	char	**args;
@@ -95,7 +95,7 @@ int	main(int argc, char **argv)
 	stack_b = (t_stack **)malloc(sizeof(t_stack));
 	*stack_a = NULL;
 	*stack_b = NULL;
-	initStack(stack_a, argc, argv);
+	init_stack(stack_a, argc, argv);
 	if (is_sorted(stack_a))
 	{
 		free_stack(stack_a);

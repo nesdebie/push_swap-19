@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stacks.c                                         :+:      :+:    :+:   */
+/*   ft_stacks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/05 15:15:47 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/05/05 15:18:36 by nesdebie         ###   ########.fr       */
+/*   Created: 2023/05/23 09:58:14 by nesdebie          #+#    #+#             */
+/*   Updated: 2023/05/23 10:01:38 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,6 @@ t_stack	*ft_stacklast(t_stack *head)
 			return (tmp);
 	}
 	return (tmp);
-}
-
-void	ft_stackclear(t_stack **lst)
-{
-	t_stack	*tmp;
-
-	if (!lst)
-		return ;
-	tmp = *lst;
-	while (tmp)
-	{
-		*lst = tmp;
-		tmp = tmp->next;
-		free(*lst);
-	}
-	*lst = NULL;
 }
 
 int	ft_stacksize(t_stack *lst)

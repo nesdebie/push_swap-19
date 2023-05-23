@@ -8,6 +8,7 @@ SRC = 	./src/main.c \
 		./src/ft_radix.c \
 		./src/ft_check.c \
 		./src/ft_exit.c \
+		./src/ft_error.c \
 		./libft/ft_split.c \
 		./libft/ft_putendl_fd.c \
 		./libft/ft_putstr_fd.c \
