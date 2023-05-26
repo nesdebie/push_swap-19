@@ -1,14 +1,16 @@
-SRC = 	./src/main.c \
-		./src/push.c \
-		./src/swap.c \
-		./src/rotate.c \
-		./src/reverse_rotate.c \
-		./src/ft_stacks.c \
-		./src/ft_simple_sort.c \
-		./src/ft_radix.c \
-		./src/ft_check.c \
-		./src/ft_exit.c \
-		./src/ft_error.c \
+NAME	= push_swap
+
+SRCS = 	./srcs/main.c \
+		./srcs/push.c \
+		./srcs/swap.c \
+		./srcs/rotate.c \
+		./srcs/reverse_rotate.c \
+		./srcs/ft_stacks.c \
+		./srcs/ft_simple_sort.c \
+		./srcs/ft_radix.c \
+		./srcs/ft_check.c \
+		./srcs/ft_exit.c \
+		./srcs/ft_error.c \
 		./libft/ft_split.c \
 		./libft/ft_putendl_fd.c \
 		./libft/ft_putstr_fd.c \
@@ -16,31 +18,31 @@ SRC = 	./src/main.c \
 		./libft/ft_atoi.c \
 		./libft/ft_isdigit.c
 
-NAME = push_swap
+OBJS 	= $(SRCS:.c=.o)
 
-CC = cc
+HEADER	= includes
 
-CFLAGS = -Wall -Wextra -Werror
+CC 		= cc
 
-HEADER = ./includes/push_swap.h
+CFLAGS 	= -Wall -Wextra -Werror
 
-OBJ = $(SRC:c=o)
+.c.o:		%.o : %.c
+	$(CC) $(CFLAGS) -I$(HEADER) -c $< -o $(<:.c=.o)
 
-all: $(NAME)
+all: 		$(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
-
-%.o: %.c
-	${CC} ${CFLAGS} -c $< -o $@
+$(NAME):	$(OBJS)
+	make re -C ./libft
+	$(CC) $(OBJS) -Llibft -lft -o $(NAME)
 
 clean:
-	rm -f $(OBJ)
+	make clean -C ./libft
+	rm -f $(OBJS)
 
-fclean:
-	rm -f $(OBJ)
+fclean: 	clean
+	make fclean -C ./libft
 	rm -f $(NAME)
 
-re: fclean all
+re:			fclean all
 
-.PHONY: clean fclean re
+re_bonus:	all clean fclean re
