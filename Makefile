@@ -10,13 +10,7 @@ SRCS = 	./srcs/main.c \
 		./srcs/ft_radix.c \
 		./srcs/ft_check.c \
 		./srcs/ft_exit.c \
-		./srcs/ft_error.c \
-		./libft/ft_split.c \
-		./libft/ft_putendl_fd.c \
-		./libft/ft_putstr_fd.c \
-		./libft/ft_putchar_fd.c \
-		./libft/ft_atoi.c \
-		./libft/ft_isdigit.c
+		./srcs/ft_error.c
 
 OBJS 	= $(SRCS:.c=.o)
 
