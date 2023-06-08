@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:55:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/05/23 09:51:59 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/08 14:50:56 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static int	ft_isnum(char *num)
 			return (0);
 		i++;
 	}
+	if (num[0] == '-' && i == 1)
+		return (0);
 	return (1);
 }
 
@@ -46,15 +48,15 @@ void	ft_check_args(int argc, char **argv)
 	long	tmp;
 	char	**args;	
 
-	i = 0;
+	i = -1;
 	if (argc == 2)
 		args = ft_split(argv[1], ' ');
 	else
 	{
-		i = 1;
+		i = 0;
 		args = argv;
 	}
-	while (args[i])
+	while (args[++i])
 	{
 		tmp = ft_atoi(args[i]);
 		if (!ft_isnum(args[i]))
@@ -63,7 +65,6 @@ void	ft_check_args(int argc, char **argv)
 			ft_error("Error");
 		if (tmp < -2147483648 || tmp > 2147483647)
 			ft_error("Error");
-		i++;
 	}
 	if (argc == 2)
 		ft_free(args);
