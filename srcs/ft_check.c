@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:55:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/08 14:50:56 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/12 12:04:44 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,36 @@ static int	ft_isnum(char *num)
 	return (1);
 }
 
+static long long	ft_bigatoi(char const *str)
+{
+	int				i;
+	int				sign;
+	long long		result;
+
+	result = 0;
+	i = 0;
+	sign = 1;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == 43 || str[i] == 45)
+	{
+		if (str[i] == 45)
+			sign *= -1;
+		i++;
+	}
+	while (ft_isdigit(str[i]))
+	{
+		result = result * 10 + str[i] - 48;
+		i++;
+	}
+	return ((sign * result));
+}
+
 void	ft_check_args(int argc, char **argv)
 {
-	int		i;
-	long	tmp;
-	char	**args;	
+	int			i;
+	long long	tmp;
+	char		**args;	
 
 	i = -1;
 	if (argc == 2)
@@ -58,7 +83,7 @@ void	ft_check_args(int argc, char **argv)
 	}
 	while (args[++i])
 	{
-		tmp = ft_atoi(args[i]);
+		tmp = ft_bigatoi(args[i]);
 		if (!ft_isnum(args[i]))
 			ft_error("Error");
 		if (ft_contains(tmp, args, i))

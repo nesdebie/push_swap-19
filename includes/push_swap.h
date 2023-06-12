@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 14:24:29 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/08 14:31:05 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/12 12:10:46 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,10 @@ typedef struct s_stack
 /* Reverse-Rotate */
 int		reverse_rotate(t_stack **stack);
 int		rra(t_stack **stack_a);
-int		rrb(t_stack **stack_b);
-int		rrr(t_stack **stack_a, t_stack **stack_b);
 
 /* Rotate */
 int		rotate(t_stack **stack);
 int		ra(t_stack **stack_a);
-int		rb(t_stack **stack_b);
-int		rr(t_stack **stack_a, t_stack **stack_b);
 
 /* Push */
 int		push(t_stack **stack_to, t_stack **stack_from);
@@ -46,8 +42,6 @@ int		pb(t_stack **stack_a, t_stack **stack_b);
 /* Swap */
 int		swap(t_stack **stack);
 int		sa(t_stack **stack_a);
-int		sb(t_stack **stack_b);
-int		ss(t_stack **stack_a, t_stack **stack_b);
 
 /* Mixed */
 int		sa_rra(t_stack **stack_a);

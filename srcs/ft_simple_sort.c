@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:39:56 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/05/23 10:06:04 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/12 11:52:10 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	sort_4(t_stack **stack_a, t_stack **stack_b)
 		return ;
 	distance = get_distance(stack_a, get_min(stack_a, -1));
 	if (distance == 1)
-		ra(stack_a);
+		sa(stack_a);
 	else if (distance == 2)
 	{
 		ra(stack_a);
@@ -86,7 +86,7 @@ void	sort_5(t_stack **stack_a, t_stack **stack_b)
 
 	distance = get_distance(stack_a, get_min(stack_a, -1));
 	if (distance == 1)
-		ra(stack_a);
+		sa(stack_a);
 	else if (distance == 2)
 	{
 		ra(stack_a);
