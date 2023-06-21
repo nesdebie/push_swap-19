@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:55:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/21 14:03:29 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/21 14:49:43 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	ft_isnum(char *num)
 	int	i;
 
 	i = 0;
-	if (num[0] == '-')
+	if (num[0] == '-' || num[0] == '+')
 		i++;
 	while (num[i])
 	{
@@ -64,7 +64,7 @@ static int	ft_isnum(char *num)
 			return (0);
 		i++;
 	}
-	if (num[0] == '-' && i == 1)
+	if ((num[0] == '-' || num[0] == '+') && i == 1)
 		return (0);
 	return (1);
 }
