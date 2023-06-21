@@ -1,18 +1,17 @@
 NAME	= push_swap
 
-SRCS = 	./srcs/main.c \
-		./srcs/push.c \
-		./srcs/swap.c \
-		./srcs/rotate.c \
-		./srcs/reverse_rotate.c \
-		./srcs/ft_stacks.c \
-		./srcs/ft_simple_sort.c \
-		./srcs/ft_radix.c \
-		./srcs/ft_check.c \
-		./srcs/ft_exit.c \
-		./srcs/ft_error.c
+src = 	./src/main.c \
+		./src/push.c \
+		./src/swap.c \
+		./src/rotate.c \
+		./src/reverse_rotate.c \
+		./src/ft_stacks.c \
+		./src/ft_simple_sort.c \
+		./src/ft_radix.c \
+		./src/ft_check.c \
+		./src/utils.c
 
-OBJS 	= $(SRCS:.c=.o)
+OBJS 	= $(src:.c=.o)
 
 HEADER	= includes
 

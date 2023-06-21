@@ -1,35 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/23 09:53:00 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/05/23 10:01:49 by nesdebie         ###   ########.fr       */
+/*   Created: 2023/05/16 14:49:37 by nesdebie          #+#    #+#             */
+/*   Updated: 2023/06/21 11:38:24 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	ft_stackclear(t_stack **lst)
+static int	rotate(t_stack **stack)
 {
-	t_stack	*tmp;
+	t_stack	*head;
+	t_stack	*tail;
 
-	if (!lst)
-		return ;
-	tmp = *lst;
-	while (tmp)
-	{
-		*lst = tmp;
-		tmp = tmp->next;
-		free(*lst);
-	}
-	*lst = NULL;
+	if (ft_stacksize(*stack) < 2)
+		return (1);
+	head = *stack;
+	tail = ft_stacklast(head);
+	*stack = head->next;
+	head->next = NULL;
+	tail->next = head;
+	return (0);
 }
 
-void	ft_error(char *msg)
+void	ra(t_stack **stack_a)
 {
-	ft_putendl_fd(msg, 1);
-	exit(0);
+	if (rotate(stack_a))
+		return ;
+	ft_putendl_fd("ra", 1);
+}
+
+void	ra_sa_rra(t_stack **stack_a)
+{
+	ra(stack_a);
+	sa_rra(stack_a);
 }

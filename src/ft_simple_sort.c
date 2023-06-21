@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:39:56 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/12 11:52:10 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/21 11:52:20 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void	sort_4(t_stack **stack_a, t_stack **stack_b)
 	pa(stack_a, stack_b);
 }
 
-void	sort_5(t_stack **stack_a, t_stack **stack_b)
+static void	sort_5(t_stack **stack_a, t_stack **stack_b)
 {
 	int	distance;
 

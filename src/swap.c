@@ -6,13 +6,13 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:46:42 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/12 12:09:59 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/21 11:39:33 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	swap(t_stack **stack)
+static int	swap(t_stack **stack)
 {
 	t_stack	*head;
 	t_stack	*next;
@@ -20,7 +20,7 @@ int	swap(t_stack **stack)
 	int		tmp_idx;
 
 	if (ft_stacksize(*stack) < 2)
-		return (-1);
+		return (1);
 	head = *stack;
 	next = head->next;
 	if (!head && !next)
@@ -34,17 +34,15 @@ int	swap(t_stack **stack)
 	return (0);
 }
 
-int	sa(t_stack **stack_a)
+void	sa(t_stack **stack_a)
 {
-	if (swap(stack_a) == -1)
-		return (-1);
+	if (swap(stack_a))
+		return ;
 	ft_putendl_fd("sa", 1);
-	return (0);
 }
 
-int	sa_rra(t_stack **stack_a)
+void	sa_rra(t_stack **stack_a)
 {
 	sa(stack_a);
 	rra(stack_a);
-	return (0);
 }

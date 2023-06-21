@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 14:23:50 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/05/23 09:59:45 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/21 11:25:57 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,60 +50,66 @@ void	index_stack(t_stack **stack)
 	}
 }
 
-static void	init_stack(t_stack **stack, int argc, char **argv)
+static void	init_stack(t_stack **stack, int ac, char **av, int i)
 {
 	t_stack	*new;
 	char	**args;
-	int		i;
 
-	i = 0;
-	if (argc == 2)
-		args = ft_split(argv[1], ' ');
+	if (ac == 2)
+	{
+		args = ft_split(av[1], SPACE);
+		if (!args)
+			ft_error("Error");
+	}
 	else
 	{
-		i = 1;
-		args = argv;
+		i = 0;
+		args = av;
 	}
-	while (args[i])
+	while (args[++i])
 	{
 		new = ft_stacknew(ft_atoi(args[i]));
+		if (!new)
+			ft_error("Error");
 		ft_stackadd_back(stack, new);
-		i++;
 	}
 	index_stack(stack);
-	if (argc == 2)
+	if (ac == 2)
 		ft_free(args);
 }
 
 static void	sort_stack(t_stack **stack_a, t_stack **stack_b)
 {
-	if (ft_stacksize(*stack_a) <= 5)
+	if (ft_stacksize(*stack_a) < 6)
 		simple_sort(stack_a, stack_b);
 	else
 		radix_sort(stack_a, stack_b);
 }
 
-int	main(int argc, char **argv)
+int	main(int ac, char **av)
 {
 	t_stack	**stack_a;
 	t_stack	**stack_b;
 
-	if (argc < 2)
-		return (-1);
-	ft_check_args(argc, argv);
-	stack_a = (t_stack **)malloc(sizeof(t_stack));
-	stack_b = (t_stack **)malloc(sizeof(t_stack));
-	*stack_a = NULL;
-	*stack_b = NULL;
-	init_stack(stack_a, argc, argv);
-	if (is_sorted(stack_a))
-	{
-		free_stack(stack_a);
-		free_stack(stack_b);
+	if (ac < 2)
 		return (0);
+	ft_check_args(ac, av);
+	stack_a = (t_stack **)malloc(sizeof(t_stack));
+	if (!stack_a)
+		return (0);
+	stack_b = (t_stack **)malloc(sizeof(t_stack));
+	if (stack_b)
+	{
+		*stack_a = NULL;
+		*stack_b = NULL;
+		init_stack(stack_a, ac, av, -1);
+		if (is_sorted(stack_a))
+		{
+			free_stack(stack_a);
+			return (free_stack(stack_b));
+		}
+		sort_stack(stack_a, stack_b);
+		free_stack(stack_b);
 	}
-	sort_stack(stack_a, stack_b);
-	free_stack(stack_a);
-	free_stack(stack_b);
-	return (0);
+	return (free_stack(stack_a));
 }

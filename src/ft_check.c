@@ -6,18 +6,43 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:55:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/12 12:04:44 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/21 11:27:44 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static int	ft_contains(int num, char **argv, int i)
+static long long	ft_bigatoi(char const *str)
+{
+	int				i;
+	int				sign;
+	long long		result;
+
+	result = 0;
+	i = 0;
+	sign = 1;
+	while (str[i] == SPACE || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == 43 || str[i] == 45)
+	{
+		if (str[i] == 45)
+			sign *= -1;
+		i++;
+	}
+	while (ft_isdigit(str[i]))
+	{
+		result = result * 10 + str[i] - 48;
+		i++;
+	}
+	return ((sign * result));
+}
+
+static int	ft_contains(int num, char **av, int i)
 {
 	i++;
-	while (argv[i])
+	while (av[i])
 	{
-		if (ft_atoi(argv[i]) == num)
+		if (ft_bigatoi(av[i]) == num)
 			return (1);
 		i++;
 	}
@@ -42,44 +67,19 @@ static int	ft_isnum(char *num)
 	return (1);
 }
 
-static long long	ft_bigatoi(char const *str)
-{
-	int				i;
-	int				sign;
-	long long		result;
-
-	result = 0;
-	i = 0;
-	sign = 1;
-	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == 43 || str[i] == 45)
-	{
-		if (str[i] == 45)
-			sign *= -1;
-		i++;
-	}
-	while (ft_isdigit(str[i]))
-	{
-		result = result * 10 + str[i] - 48;
-		i++;
-	}
-	return ((sign * result));
-}
-
-void	ft_check_args(int argc, char **argv)
+void	ft_check_args(int ac, char **av)
 {
 	int			i;
 	long long	tmp;
 	char		**args;	
 
 	i = -1;
-	if (argc == 2)
-		args = ft_split(argv[1], ' ');
+	if (ac == 2)
+		args = ft_split(av[1], SPACE);
 	else
 	{
 		i = 0;
-		args = argv;
+		args = av;
 	}
 	while (args[++i])
 	{
@@ -88,9 +88,9 @@ void	ft_check_args(int argc, char **argv)
 			ft_error("Error");
 		if (ft_contains(tmp, args, i))
 			ft_error("Error");
-		if (tmp < -2147483648 || tmp > 2147483647)
+		if (tmp < INT32_MIN || tmp > INT32_MAX)
 			ft_error("Error");
 	}
-	if (argc == 2)
+	if (ac == 2)
 		ft_free(args);
 }

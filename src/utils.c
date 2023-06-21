@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:04:20 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/05/23 09:54:46 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/21 11:54:54 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ void	ft_free(char **str)
 		i++;
 	while (i >= 0)
 		free(str[i--]);
+}
+
+void	ft_error(char *msg)
+{
+	ft_putendl_fd(msg, 1);
+	exit(0);
 }
 
 int	is_sorted(t_stack **stack)
@@ -73,19 +79,4 @@ void	make_top(t_stack **stack, int distance)
 		while (tmp-- > 0)
 			rra(stack);
 	}
-}
-
-void	free_stack(t_stack **stack)
-{
-	t_stack	*head;
-	t_stack	*tmp;
-
-	head = *stack;
-	while (head)
-	{
-		tmp = head;
-		head = head->next;
-		free(tmp);
-	}
-	free(stack);
 }

@@ -6,20 +6,20 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:44:34 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/05/23 10:00:46 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/21 11:37:49 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	push(t_stack **stack_to, t_stack **stack_from)
+static int	push(t_stack **stack_to, t_stack **stack_from)
 {
 	t_stack	*tmp;
 	t_stack	*head_to;
 	t_stack	*head_from;
 
 	if (ft_stacksize(*stack_from) == 0)
-		return (-1);
+		return (1);
 	head_to = *stack_to;
 	head_from = *stack_from;
 	tmp = head_from;
@@ -39,18 +39,16 @@ int	push(t_stack **stack_to, t_stack **stack_from)
 	return (0);
 }
 
-int	pa(t_stack **stack_a, t_stack **stack_b)
+void	pa(t_stack **stack_a, t_stack **stack_b)
 {
-	if (push(stack_a, stack_b) == -1)
-		return (-1);
+	if (push(stack_a, stack_b))
+		return ;
 	ft_putendl_fd("pa", 1);
-	return (0);
 }
 
-int	pb(t_stack **stack_a, t_stack **stack_b)
+void	pb(t_stack **stack_a, t_stack **stack_b)
 {
-	if (push(stack_b, stack_a) == -1)
-		return (-1);
+	if (push(stack_b, stack_a))
+		return ;
 	ft_putendl_fd("pb", 1);
-	return (0);
 }
