@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 14:23:50 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/21 11:25:57 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/21 13:40:00 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	main(int ac, char **av)
 
 	if (ac < 2)
 		return (0);
-	ft_check_args(ac, av);
+	ft_check_args(ac, av, -1);
 	stack_a = (t_stack **)malloc(sizeof(t_stack));
 	if (!stack_a)
 		return (0);

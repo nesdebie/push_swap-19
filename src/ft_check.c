@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:55:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/21 11:27:44 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/21 14:03:29 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static long long	ft_bigatoi(char const *str)
 	while (ft_isdigit(str[i]))
 	{
 		result = result * 10 + str[i] - 48;
+		if (result > INT32_MAX)
+			ft_error("Error");
 		i++;
 	}
 	return ((sign * result));
@@ -67,30 +69,26 @@ static int	ft_isnum(char *num)
 	return (1);
 }
 
-void	ft_check_args(int ac, char **av)
+void	ft_check_args(int ac, char **av, int i)
 {
-	int			i;
 	long long	tmp;
-	char		**args;	
 
-	i = -1;
 	if (ac == 2)
-		args = ft_split(av[1], SPACE);
+	{
+		av = ft_split(av[1], SPACE);
+		if (!av)
+			ft_error("Error");
+	}
 	else
-	{
 		i = 0;
-		args = av;
-	}
-	while (args[++i])
+	while (av[++i])
 	{
-		tmp = ft_bigatoi(args[i]);
-		if (!ft_isnum(args[i]))
+		tmp = ft_bigatoi(av[i]);
+		if (!ft_isnum(av[i]))
 			ft_error("Error");
-		if (ft_contains(tmp, args, i))
-			ft_error("Error");
-		if (tmp < INT32_MIN || tmp > INT32_MAX)
+		if (ft_contains(tmp, av, i))
 			ft_error("Error");
 	}
 	if (ac == 2)
-		ft_free(args);
+		ft_free(av);
 }

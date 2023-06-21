@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 14:24:29 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/21 11:57:05 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/21 13:40:16 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_stack	*ft_stacklast(t_stack *head);
 int		free_stack(t_stack **stack);
 
 /* Arguments checker */
-void	ft_check_args(int argc, char **argv);
+void	ft_check_args(int ac, char **av, int i);
 
 /* Utils */
 void	ft_error(char *msg);
