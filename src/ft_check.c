@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:55:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/21 14:49:43 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/30 13:15:36 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static long long	ft_bigatoi(char const *str)
 	while (ft_isdigit(str[i]))
 	{
 		result = result * 10 + str[i] - 48;
-		if (result > INT32_MAX)
+		if (result > INT32_MAX && (result * sign != INT32_MIN))
 			ft_error("Error");
 		i++;
 	}
