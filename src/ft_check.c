@@ -6,13 +6,13 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:55:49 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/30 13:15:36 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/30 13:21:13 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static long long	ft_bigatoi(char const *str)
+static int	ft_bigatoi(char const *str)
 {
 	int				i;
 	int				sign;
@@ -71,7 +71,7 @@ static int	ft_isnum(char *num)
 
 void	ft_check_args(int ac, char **av, int i)
 {
-	long long	tmp;
+	int	tmp;
 
 	if (ac == 2)
 	{
