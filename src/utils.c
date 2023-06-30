@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:04:20 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/21 11:54:54 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/30 13:48:59 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_free(char **str)
 void	ft_error(char *msg)
 {
 	ft_putendl_fd(msg, 1);
-	exit(0);
+	exit(EXIT_FAILURE);
 }
 
 int	is_sorted(t_stack **stack)

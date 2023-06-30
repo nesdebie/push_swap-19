@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:42:52 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/05/23 09:55:10 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/06/30 13:52:32 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,11 @@
 
 static int	get_max_bits(t_stack **stack)
 {
-	t_stack	*head;
 	int		max;
 	int		max_bits;
 
-	head = *stack;
-	max = head->idx;
 	max_bits = 0;
-	while (head)
-	{
-		if (head->idx > max)
-			max = head->idx;
-		head = head->next;
-	}
+	max = ft_stacksize(*stack);
 	while ((max >> max_bits) != 0)
 		max_bits++;
 	return (max_bits);
