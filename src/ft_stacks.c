@@ -6,7 +6,7 @@
 /*   By: nesdebie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 09:58:14 by nesdebie          #+#    #+#             */
-/*   Updated: 2023/06/21 11:54:29 by nesdebie         ###   ########.fr       */
+/*   Updated: 2023/07/04 11:42:08 by nesdebie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_stack	*ft_stacknew(int nb)
 
 	new = (t_stack *)malloc(sizeof(t_stack));
 	if (!new)
-		return (NULL);
+		ft_error("The stacks malloc failed");
 	new->value = nb;
 	new->idx = -1;
 	new->next = NULL;

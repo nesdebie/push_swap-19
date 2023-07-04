@@ -25,7 +25,7 @@ CFLAGS 	= -Wall -Wextra -Werror
 all: 		$(NAME)
 
 $(NAME):	$(OBJS)
-	make re -C ./libft
+	make -C ./libft
 	$(CC) $(OBJS) -Llibft -lft -o $(NAME)
 
 clean:
